@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Astronaut Clan | SkyCave</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (free icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -17,14 +15,13 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: radial-gradient(ellipse at 20% 30%, #0a0f1e, #03060c);
+            background: radial-gradient(ellipse at 30% 40%, #0a142f, #030618);
             color: #eef2ff;
             min-height: 100vh;
             line-height: 1.5;
-            overflow-x: hidden;
         }
 
-        /* звездный фон */
+        /* анимированные звёзды (лёгкий декор) */
         .stars {
             position: fixed;
             top: 0;
@@ -34,196 +31,150 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .star {
             position: absolute;
-            background-color: #ffffff;
+            background: white;
             border-radius: 50%;
-            opacity: 0;
+            opacity: 0.6;
             animation: twinkle 3s infinite alternate;
         }
-
         @keyframes twinkle {
-            0% { opacity: 0; transform: scale(0.8);}
-            100% { opacity: 1; transform: scale(1.2);}
+            0% { opacity: 0.2; transform: scale(0.8);}
+            100% { opacity: 0.9; transform: scale(1.2);}
         }
 
-        /* контейнер */
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 2rem 4rem;
+            padding: 2rem 1.5rem 4rem;
             position: relative;
             z-index: 2;
         }
 
-        /* header */
-        .clan-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .clan-badge {
-            background: linear-gradient(135deg, #1e2a4a, #0b1120);
-            border-radius: 80px;
-            padding: 0.5rem 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            margin-bottom: 1.2rem;
-        }
-
-        .clan-badge i {
-            color: #2dd4bf;
-            font-size: 1.2rem;
-        }
-
-        .clan-badge span {
-            font-weight: 500;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            background: linear-gradient(120deg, #b2f0ff, #2dd4bf);
+        /* сине-голубой градиент для заголовков и акцентов */
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4, #38bdf8);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
 
+        /* Шапка клана */
+        .clan-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .clan-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(14, 165, 233, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 60px;
+            padding: 0.4rem 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .clan-badge i {
+            color: #38bdf8;
+            font-size: 1rem;
+        }
+        .clan-badge span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #7abfff;
+        }
         h1 {
             font-size: 5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #FFFFFF, #7dd3fc, #2dd4bf);
+            background: linear-gradient(135deg, #60a5fa, #2dd4bf, #3b82f6);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
-            text-shadow: 0 0 20px rgba(45,212,191,0.3);
         }
-
         .tagline {
-            font-size: 1.2rem;
-            color: #9ca3cf;
-            border-bottom: 1px dashed #2d3a5e;
-            padding-bottom: 0.8rem;
-            margin-top: 0.5rem;
-        }
-
-        /* server card */
-        .server-card {
-            background: rgba(12, 18, 34, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 2.5rem;
-            border: 1px solid rgba(45, 212, 191, 0.3);
-            padding: 1.8rem 2rem;
-            margin-bottom: 3rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            transition: all 0.2s;
-            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
-        }
-
-        .server-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-            .server-icon {
-            background: #0f172a;
-            width: 55px;
-            height: 55px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            border: 1px solid #2dd4bf;
-            box-shadow: 0 0 10px rgba(45,212,191,0.3);
-        }
-
-        .server-details h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .server-details p {
-            color: #a5b4fc;
-            font-family: monospace;
             font-size: 1.1rem;
+            color: #9ab3e0;
+            border-bottom: 1px dashed #2d3a6e;
+            display: inline-block;
+            padding-bottom: 0.5rem;
         }
 
-        .online-status {
-            background: #0e1625;
-            padding: 0.5rem 1.4rem;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 600;
-            border: 1px solid #2a3650;
+        /* Карточка сервера (без мониторинга) */
+        .server-card {
+            background: rgba(12, 20, 40, 0.65);
+            backdrop-filter: blur(14px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 2rem 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
         }
-
-        .online-dot {
-            width: 12px;
-            height: 12px;
-            background-color: #22c55e;
-            border-radius: 50%;
-            box-shadow: 0 0 6px #22c55e;
-            animation: pulse 1.5s infinite;
+        .server-label {
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a0c4ff;
+            margin-bottom: 0.75rem;
         }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; transform: scale(0.8);}
-            100% { opacity: 1; transform: scale(1.2);}
-        }
-
-        .players-count {
-            font-size: 1.7rem;
+        .server-ip {
+            font-size: 3.2rem;
             font-weight: 800;
+            background: linear-gradient(135deg, #3b82f6, #2dd4bf);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            word-break: break-all;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        .copy-btn {
+            background: none;
+            border: 1px solid #2dd4bf;
             color: #2dd4bf;
+            border-radius: 32px;
+            padding: 0.4rem 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .copy-btn:hover {
+            background: #2dd4bf20;
         }
 
-        /* сетка */
+        /* Сетка основатель + модераторы */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin: 2rem 0;
         }
-
-        @media (max-width: 780px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 3rem;
-            }
+        @media (max-width: 720px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            h1 { font-size: 3rem; }
+            .server-ip { font-size: 1.8rem; }
         }
-
         .info-card {
-            background: rgba(8, 14, 26, 0.65);
+            background: rgba(8, 14, 30, 0.65);
             backdrop-filter: blur(8px);
             border-radius: 2rem;
-            padding: 1.6rem 1.8rem;
-            border: 1px solid #1e2a4a;
-            transition: transform 0.2s;
+            padding: 1.8rem;
+            border: 1px solid #1f2b4e;
+            transition: 0.2s;
         }
-
         .info-card:hover {
-            border-color: #2dd4bf;
-            transform: translateY(-4px);
+            border-color: #38bdf8;
         }
-
         .card-title {
             display: flex;
             align-items: center;
@@ -231,96 +182,53 @@
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            border-left: 3px solid #2dd4bf;
+            border-left: 4px solid #2dd4bf;
             padding-left: 1rem;
         }
-
         .card-title i {
             color: #2dd4bf;
         }
-
+        .founder {
+            background: linear-gradient(95deg, #07122b, #0a1532);
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
         .moderator-list {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-
         .moderator-item {
-            background: #0a0f1c;
+            background: #0a1022;
             border-radius: 1.2rem;
-            padding: 0.9rem 1.2rem;
+            padding: 0.8rem 1.2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
-            transition: 0.1s;
-            border: 1px solid #20293f;
+            border: 1px solid #1f2b4e;
         }
-
         .moderator-item i {
             font-size: 1.8rem;
-            color: #ffb347;
+            color: #64b5f6;
         }
-
         .moderator-info strong {
             font-size: 1.1rem;
-            display: block;
         }
-
         .moderator-info span {
-            font-size: 0.75rem;
-            color: #7e8cb0;
+            font-size: 0.7rem;
+            color: #8aa2d4;
         }
 
-        .founder {
-            background: linear-gradient(95deg, #0a1428, #071126);
-            border-radius: 1.5rem;
-            padding: 1.2rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        /* футер */
         .footer {
             text-align: center;
-            margin-top: 3.5rem;
-            padding-top: 1.8rem;
-            border-top: 1px solid #19233f;
-            font-size: 0.8rem;
-            color: #6b7a9e;
-        }
-
-        .copy-ip {
-            background: #00000030;
-            font-family: monospace;
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-
-        button {
-            background: none;
-            border: none;
-            color: #2dd4bf;
-            cursor: pointer;
-        }
-
-        button:active {
-            transform: scale(0.97);
-        }
-
-        .refresh-btn {
-            background: #0f172a;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e2b4a;
             font-size: 0.75rem;
-            margin-left: 0.8rem;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
+            color: #5b719b;
         }
     </style>
 </head>
@@ -329,48 +237,37 @@
 <div class="container">
     <div class="clan-header">
         <div class="clan-badge">
-            <i class="fas fa-rocket"></i>
-            <span>✦ осколок космоса ✦</span>
+            <i class="fas fa-satellite-dish"></i>
+            <span>✦ космический клан ✦</span>
         </div>
         <h1>✦ ASTRONAUT ✦</h1>
-        <div class="tagline">выйди на орбиту — оставь след во вселенной</div>
+        <div class="tagline">твой дом на SkyCave</div>
     </div>
 
+    <!-- Блок сервера без мониторинга, с маленькой подписью и большим IP -->
     <div class="server-card">
-        <div class="server-info">
-            <div class="server-icon">
-                <i class="fas fa-cube"></i>
-            </div>
-            <div class="server-details">
-                <h3>SkyCave</h3>
-                <p><i class="fas fa-globe"></i> mc.skycave.pro:25565</p>
-            </div>
-        </div>
-        <div class="online-status" id="onlineStatusBlock">
-            <div class="online-dot"></div>
-            <span>ОНЛАЙН :</span>
-            <span class="players-count" id="playersOnline">—</span>
-            <button class="refresh-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i> Обновить</button>
-        </div>
+        <div class="server-label">★ Играем на сервере ★</div>
+        <div class="server-ip" id="serverIp">mc.skycave.pro:25565</div>
+        <button class="copy-btn" onclick="copyIP()"><i class="far fa-copy"></i> Копировать адрес</button>
     </div>
 
     <div class="grid-2">
-        <!-- клан информация -->
+        <!-- Основатель -->
         <div class="info-card">
             <div class="card-title">
-                <i class="fas fa-users"></i>
-                <span>Основатель</span>
+                <i class="fas fa-crown"></i>
+                <span>Создатель клана</span>
             </div>
             <div class="founder">
-                <i class="fas fa-crown" style="color: #ffd966; font-size: 2rem;"></i>
+                <i class="fas fa-user-astronaut" style="font-size: 2rem; color: #3b82f6;"></i>
                 <div>
-                    <strong style="font-size: 1.2rem;">UntitledAstro</strong><br>
-                    <span style="color: #a9bcff;">создатель альянса</span>
+                    <strong style="font-size: 1.3rem;">UntitledAstro</strong><br>
+                    <span style="color: #a0c4ff;">лидер и основатель Astronaut</span>
                 </div>
             </div>
         </div>
 
-        <!-- модеры -->
+        <!-- Модераторы (обновлённые ники) -->
         <div class="info-card">
             <div class="card-title">
                 <i class="fas fa-shield-haltered"></i>
@@ -378,127 +275,53 @@
             </div>
             <div class="moderator-list">
                 <div class="moderator-item">
-                    <i class="fas fa-user-astronaut"></i>
+                    <i class="fas fa-user-shield"></i>
                     <div class="moderator-info">
                         <strong>XAXAXAXA00026</strong>
-                        <span>старший модератор &nbsp;✦</span>
+                        <span>главный страж порядка</span>
                     </div>
                 </div>
                 <div class="moderator-item">
-                    <i class="fas fa-user-astronaut"></i>
+                    <i class="fas fa-user-shield"></i>
                     <div class="moderator-info">
-                        <strong>CEP102341</strong>
-                        <span>хранитель порядка</span>
+                        <strong>CEP132023</strong>
+                        <span>модератор чата и помощи</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- дополнительная ссылка на сервер -->
-    <div style="background: #03070f40; border-radius: 1.5rem; padding: 1rem; text-align: center;">
-        <i class="fas fa-terminal"></i> Адрес для подключения: 
-        <span class="copy-ip" id="serverIp">mc.skycave.pro:25565</span>
-        <button onclick="copyIP()" style="margin-left: 0.6rem;"><i class="far fa-copy"></i> Копировать</button>
-    </div>
-
     <div class="footer">
-        <i class="far fa-chart-line"></i> данные о игроках обновляются каждые 30 секунд • Astronaut / SkyCave <br>
-        не забудь поставить ресурспак — и погнали!
+        <i class="fas fa-globe"></i> SkyCave — лучшее выживание • Astronaut ждёт тебя
     </div>
 </div>
 
 <script>
-    // --- звёздная анимация ---
-    function createStars() {
-        const container = document.getElementById('starsContainer');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            const size = Math.random() * 3 + 1;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 5}s`;
-            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            container.appendChild(star);
-        }
-    }
-    createStars();
-
-    // --- получение количества игроков через API mcsrvstat ---
-    async function fetchPlayers() {
-        const playersSpan = document.getElementById('playersOnline');
-        const statusDot = document.querySelector('.online-dot');
-        const parentBlock = document.getElementById('onlineStatusBlock');
-        
-        // сброс текста
-        playersSpan.innerText = '⟳';
-        
-        try {
-            const response = await fetch('https://api.mcsrvstat.us/3/mc.skycave.pro', {
-                headers: {
-                    'User-Agent': 'AstronautClanSite/1.0'
-                }
-            });
-            if (!response.ok) throw new Error('API недоступен');
-            const data = await response.json();
-            
-            if (data && data.online === true) {
-                let onlineCount = '0';
-                if (data.players && typeof data.players.online === 'number') {
-                    onlineCount = data.players.online;
-                } else if (data.players && data.players.online !== undefined) {
-                    onlineCount = data.players.online;
-                } else {
-                    onlineCount = '?';
-                }
-                playersSpan.innerText = onlineCount;
-                statusDot.style.backgroundColor = '#22c55e';
-                statusDot.style.boxShadow = '0 0 8px #22c55e';
-            } else {
-                playersSpan.innerText = '0';
-                statusDot.style.backgroundColor = '#64748b';
-                statusDot.style.boxShadow = 'none';
-                // можно показать note
-                const tooltipNote = document.createElement('span');
-                // мягко — просто статус офлайн
-                if (!document.getElementById('offlineNote')) {
-                    const note = document.createElement('div');
-                    note.id = 'offlineNote';
-                    note.style.fontSize = '0.7rem';
-                    note.style.color = '#94a3b8';
-                    note.style.marginTop = '5px';
-                    note.innerText = '⚡ Сервер сейчас не отвечает, возможен перезапуск.';
-                    parentBlock.appendChild(note);
-                    setTimeout(() => note.remove(), 4000);
-                }
-            }
-        } catch (error) {
-            console.warn('ошибка запроса статуса сервера:', error);
-            playersSpan.innerText = '?';
-        }
+    // Генерация звёздного фона (декоративно)
+    const starsContainer = document.getElementById('starsContainer');
+    for (let i = 0; i < 180; i++) {
+        let star = document.createElement('div');
+        star.classList.add('star');
+        let size = Math.random() * 2.5 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 4}s`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        starsContainer.appendChild(star);
     }
 
     // копирование IP
     window.copyIP = function() {
         const ipText = document.getElementById('serverIp').innerText;
         navigator.clipboard.writeText(ipText);
-        const btn = event.target.closest('button');
-        const original = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Готово!';
-        setTimeout(() => btn.innerHTML = original, 1500);
+        const btn = document.querySelector('.copy-btn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+        setTimeout(() => btn.innerHTML = originalHtml, 1500);
     };
-
-    // обновление вручную по кнопке
-    document.getElementById('refreshBtn').addEventListener('click', () => {
-        fetchPlayers();
-    });
-
-    // автообновление каждые 30 сек
-    fetchPlayers();
-    setInterval(fetchPlayers, 30000);
 </script>
 </body>
 </html>
